@@ -1,10 +1,11 @@
-function App() {
+import { useState } from "react"
+import NoteEdit from "./pages/NoteEdit"
+import NoteList from "./pages/NoteList"
 
-  return (
-    <>
-      <p className="text-orange-600">Hey!</p>
-    </>
-  )
+function App() {
+  const [isOnEditPage] = useState(false)
+
+  return isOnEditPage ? <NoteEdit /> : <NoteList />
 }
 
 export default App
