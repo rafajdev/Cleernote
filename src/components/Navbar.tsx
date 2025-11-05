@@ -8,8 +8,8 @@ export default function Navbar({ children }: NavbarProps) {
 	return (
 		<nav
 			className='
-			flex items-center justify-center 
-			w-2xl h-2/3 
+			flex items-center justify-between 
+			w-2xl h-2/3 p-10
 			border-2 border-blue-500 
 			rounded-lg 
 			shadow-sm'
