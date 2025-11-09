@@ -1,11 +1,16 @@
-import { useState } from "react"
-import NoteEdit from "./pages/NoteEdit"
-import NoteList from "./pages/NoteList"
+import { useState } from 'react';
+import NoteEdit from './pages/NoteEdit';
+import NoteList from './pages/NoteList';
+import { NotesProvider } from './contexts/NotesProvider';
 
 function App() {
-  const [isOnEditPage] = useState(false)
+	const [isOnEditPage] = useState(false);
 
-  return isOnEditPage ? <NoteEdit /> : <NoteList />
+	return (
+		<NotesProvider>
+			{isOnEditPage ? <NoteEdit /> : <NoteList />}
+		</NotesProvider>
+	);
 }
 
-export default App
+export default App;
