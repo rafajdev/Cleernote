@@ -3,10 +3,11 @@ import type { ReactNode } from 'react';
 type ButtonProps = {
 	children?: ReactNode;
 	iconOnly?: boolean;
+	isDisabled?: boolean;
 	onClickFn?: () => void;
 };
 
-export default function Button({ children, iconOnly, onClickFn }: ButtonProps) {
+export default function Button({ children, iconOnly, onClickFn, isDisabled }: ButtonProps) {
 	return (
 		<button
 			onClick={onClickFn}
@@ -18,6 +19,7 @@ export default function Button({ children, iconOnly, onClickFn }: ButtonProps) {
          rounded-md 
          transition-colors 
          cursor-pointer`}
+			disabled={isDisabled}
 		>
 			{children}
 		</button>
