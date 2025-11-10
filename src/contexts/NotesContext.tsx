@@ -1,20 +1,26 @@
 import { createContext } from 'react';
-import type { NoteCreateType, NoteType } from '../types/NoteType';
+import type { NoteCreateType, NoteCurrentType, NoteType } from '../types/NoteType';
 
 type NotesContextType = {
 	isOnEditPage: boolean;
-	setIsOnEditPage: (value: boolean) => void;
 	notes: NoteType[];
-	createNote: (note: NoteCreateType) => void;
-	updateNote: (note: NoteType) => void;
+	currentNote: NoteCurrentType | null;
+
+	setIsOnEditPage: (value: boolean) => void;
+	setCurrentNote: (value: NoteCurrentType | null) => void;
+
+	upsertNote: (data: NoteCreateType | NoteCurrentType) => void;
 	deleteNote: (id: string) => void;
 };
 
 export const NotesContext = createContext<NotesContextType>({
-	notes: [],
 	isOnEditPage: false,
+	notes: [],
+	currentNote: null,
+
 	setIsOnEditPage: () => {},
-	createNote: () => {},
-	updateNote: () => {},
+	setCurrentNote: () => {},
+
+	upsertNote: () => {},
 	deleteNote: () => {},
 });
