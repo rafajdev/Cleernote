@@ -1,13 +1,13 @@
 import { type ReactNode } from 'react';
 import { NotesContext } from './NotesContext';
-import { useNotes } from '../hooks/useNotes';
+import { useNotesManager } from '../hooks/useNotesManager';
 
 type NotesProviderType = {
 	children: ReactNode;
 };
 
 export function NotesProvider({ children }: NotesProviderType) {
-	const notesHook = useNotes();
+	const notesHook = useNotesManager();
 
 	return <NotesContext.Provider value={notesHook}>{children}</NotesContext.Provider>;
 }
