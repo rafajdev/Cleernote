@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import type { NoteCreateType, NoteType } from '../types/NoteType';
+import type { NoteCreateType, NoteCurrentType, NoteType } from '../types/NoteType';
 
 export function useNotesManager() {
 	const [notes, setNotes] = useState<NoteType[]>([]);
 	const [isOnEditPage, setIsOnEditPage] = useState(false);
+	const [currentNote, setCurrentNote] = useState(null);
 
 	useEffect(() => {
 		const storedNotes = localStorage.getItem('notes');
@@ -23,26 +24,40 @@ export function useNotesManager() {
 		localStorage.setItem('notes', JSON.stringify(notes));
 	}, [notes]);
 
-	function createNote(data: NoteCreateType) {
-		const newNote: NoteType = {
-			id: crypto.randomUUID(),
-			...data,
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		};
+	function upsertNote(data: NoteCreateType | NoteCurrentType) {
+		setNotes((prev) => {
+			if ('id' in data) {
+				const exists = prev.some((n) => n.id === data.id);
 
-		setNotes((prev) => [...prev, newNote]);
-	}
+				if (exists) {
+					return prev.map((n) =>
+						n.id === data.id ? { ...n, ...data, updatedAt: new Date() } : n
+					);
+				}
+			}
 
-	function updateNote(note: NoteType) {
-		setNotes((prev) =>
-			prev.map((n) => (n.id === note.id ? { ...note, updatedAt: new Date() } : n))
-		);
+			const newNote: NoteType = {
+				id: crypto.randomUUID(),
+				...data,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			};
+
+			return [...prev, newNote];
+		});
 	}
 
 	function deleteNote(id: string) {
 		setNotes((prev) => prev.filter((n) => n.id !== id));
 	}
 
-	return { isOnEditPage, setIsOnEditPage, notes, createNote, updateNote, deleteNote };
+	return {
+		isOnEditPage,
+		notes,
+		currentNote,
+		setIsOnEditPage,
+		setCurrentNote,
+		upsertNote,
+		deleteNote,
+	};
 }
