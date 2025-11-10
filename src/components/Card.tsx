@@ -1,4 +1,23 @@
-export default function Card() {
+import { useNotes } from '../hooks/useNotes';
+
+type CardProps = {
+	id: string;
+	title: string;
+	content: string;
+};
+
+export default function Card({ id, title, content }: CardProps) {
+	const { setIsOnEditPage, setCurrentNote } = useNotes();
+
+	const handleOnClick = () => {
+		setCurrentNote({
+			id: id,
+			title: title,
+			content: content,
+		});
+		setIsOnEditPage(true);
+	};
+
 	return (
 		<div
 			className='
@@ -9,13 +28,13 @@ export default function Card() {
          shadow-sm hover:shadow-lg transition-shadow
          cursor-pointer
          '
+			onClick={handleOnClick}
 		>
 			<h3 className='mb-2 text-lg font-semibold text-gray-700 group-hover:text-gray-800'>
-				Note
+				{title}
 			</h3>
 			<p className='text-sm text-gray-600 group-hover:text-gray-800'>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac mollis enim. Integer
-				auctor at nisl vitae fringilla.
+				{content.length > 118 ? content.slice(0, 118) + '...' : content}
 			</p>
 		</div>
 	);
