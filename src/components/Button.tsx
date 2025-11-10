@@ -3,11 +3,13 @@ import type { ReactNode } from 'react';
 type ButtonProps = {
 	children?: ReactNode;
 	iconOnly?: boolean;
+	onClickFn?: () => void;
 };
 
-export default function Button({ children, iconOnly }: ButtonProps) {
+export default function Button({ children, iconOnly, onClickFn }: ButtonProps) {
 	return (
 		<button
+			onClick={onClickFn}
 			className={`
          flex items-center justify-center gap-2 
          ${iconOnly ? 'w-10' : 'w-52'} h-10 
