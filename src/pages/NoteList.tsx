@@ -6,7 +6,12 @@ import { SunMoon } from 'lucide-react';
 import { useNotes } from '../hooks/useNotes';
 
 export default function NoteList() {
-	const { setIsOnEditPage } = useNotes();
+	const { notes, setIsOnEditPage, setCurrentNote } = useNotes();
+
+	const handleOnClick = () => {
+		setCurrentNote(null);
+		setIsOnEditPage(true);
+	};
 
 	return (
 		<div className='flex flex-col w-dvw h-dvh'>
@@ -14,12 +19,14 @@ export default function NoteList() {
 				<h1 className='text-3xl font-semibold'>Cleernote</h1>
 			</header>
 			<main className='flex flex-wrap content-start justify-center gap-10 h-[80vh] overflow-y-auto overflow-x-hidden px-20'>
-				<Card />
+				{notes.map((note) => (
+					<Card id={note.id} title={note.title} content={note.content} />
+				))}
 			</main>
 			<footer className='flex justify-center items-center h-3/14 px-20'>
 				<Navbar>
 					<img src='/cleernote_icon.png' className='h-10' />
-					<Button onClickFn={() => setIsOnEditPage(true)}>
+					<Button onClickFn={handleOnClick}>
 						<Plus />
 						New note
 					</Button>
