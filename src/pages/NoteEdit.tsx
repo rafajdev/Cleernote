@@ -34,8 +34,7 @@ export default function NoteEdit() {
 				content: content,
 			});
 		}
-
-		alert('Saving note, setIsOnEditPage to false');
+		
 		setIsOnEditPage(false);
 	};
 
