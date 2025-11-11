@@ -56,7 +56,7 @@ export default function Card({ id, title, content }: CardProps) {
 			<h3 className='mb-2 text-lg font-semibold text-gray-700 group-hover:text-gray-800'>
 				{title}
 			</h3>
-			<p className='text-sm text-gray-600 group-hover:text-gray-800'>
+			<p className='text-sm text-gray-600 break-all group-hover:text-gray-800'>
 				{content.length > 118 ? content.slice(0, 118) + '...' : content}
 			</p>
 		</div>
