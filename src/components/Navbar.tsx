@@ -9,7 +9,7 @@ export default function Navbar({ children }: NavbarProps) {
 		<nav
 			className='
 			flex items-center justify-between 
-			w-2xl h-2/3 p-10
+			w-2xl h-2/3 p-10 max-sm:p-5
 			border-2 border-blue-500 
 			rounded-lg 
 			shadow-sm'
