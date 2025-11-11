@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { NoteCreateType, NoteCurrentType, NoteType } from '../types/NoteType';
+import { nanoid } from 'nanoid';
 
 export function useNotesManager() {
 	const [notes, setNotes] = useState<NoteType[]>([]);
@@ -37,7 +38,7 @@ export function useNotesManager() {
 			}
 
 			const newNote: NoteType = {
-				id: crypto.randomUUID(),
+				id: nanoid(),
 				...data,
 				createdAt: new Date(),
 				updatedAt: new Date(),
