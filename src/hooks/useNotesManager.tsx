@@ -4,7 +4,7 @@ import type { NoteCreateType, NoteCurrentType, NoteType } from '../types/NoteTyp
 export function useNotesManager() {
 	const [notes, setNotes] = useState<NoteType[]>([]);
 	const [isOnEditPage, setIsOnEditPage] = useState(false);
-	const [currentNote, setCurrentNote] = useState(null);
+	const [currentNote, setCurrentNote] = useState<NoteCurrentType | null>(null);
 
 	useEffect(() => {
 		const storedNotes = localStorage.getItem('notes');
