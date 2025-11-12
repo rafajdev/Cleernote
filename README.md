@@ -3,6 +3,9 @@
 Cleernote é um app **minimalista de notas** feito com **React + TypeScript + TailwindCSS**.  
 Guarda suas notas no `localStorage` e permite **criar, editar e excluir** com uma interface simples e rápida.
 
+
+🌐 **Acesse o site:** [Clique aqui](https://cleernote.netlify.app)
+
 ---
 
 ## ⚙️ Tecnologias
