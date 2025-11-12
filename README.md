@@ -71,3 +71,8 @@ O `App` consome o contexto via `useNotes` para alternar entre:
 Todas as notas são salvas no **localStorage**, mantendo seus dados mesmo após fechar o navegador 💾  
 
 ---
+
+## 🔜 Próximas atualizações
+
+- Dark Mode 🌓
+- Busca por notas 🔍
